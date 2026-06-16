@@ -1,0 +1,18 @@
+# Auto detect text files and normalize line endings
+* text=auto
+
+# Declare files that are truly binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+
+# Force line endings for source files
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf

@@ -29,8 +29,8 @@ class Config:
     AZURE_OPENAI_EMBEDDING_DEPLOYMENT = os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT", "text-embedding-ada-002")
     
     # RAG Configuration
-    CHUNK_SIZE = 1000
-    CHUNK_OVERLAP = 200
+    CHUNK_SIZE = 800
+    CHUNK_OVERLAP = 150
     RETRIEVER_TOP_K = 4
     
     @classmethod

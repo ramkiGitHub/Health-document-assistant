@@ -1,0 +1,76 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.pyd
+
+# Virtual environments
+env/
+venv/
+.venv/
+ENV/
+
+# Environment variables
+.env
+.env.*
+
+# Build directories
+.build/
+dist/
+.eggs/
+*.egg-info/
+.python-version
+
+# VS Code
+.vscode/
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+*.pyd
+
+# Distribution / packaging
+.Python
+pip-wheel-metadata/
+
+# Test and coverage
+.coverage
+.coverage.*
+.pytest_cache/
+htmlcov/
+.nox/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# MyPy
+.mypy_cache/
+.pyre/
+
+# Pyright
+.pyright/
+
+# SQLite
+*.sqlite3
+*.db
+*.db-journal
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# LangChain and vector store artifacts
+indexes/
+data/processed/
+
+# Logs
+*.log
+
+# Docker
+docker-compose.override.yml
+
+# Temporary files
+*.swp
+*~
