@@ -1,6 +1,7 @@
 """Document service helpers for file listing and ingestion."""
 from pathlib import Path
 from typing import List
+import json
 
 from app.schemas import DocumentInfo
 
@@ -42,3 +43,27 @@ def ingest_documents(data_path: str):
     documents = list_documents(data_path)
     total_chunks = sum(document.chunks for document in documents)
     return documents, total_chunks
+
+
+def list_processed_chunks(processed_path: str) -> List[dict]:
+    """Read processed chunk JSON files from `processed_path` and return combined list of chunk dicts.
+
+    Expects files named like `*.chunks.json` containing a JSON array of chunk objects with keys:
+    `chunk_id`, `document_name`, `index`, `text`.
+    """
+    p = Path(processed_path)
+    if not p.exists() or not p.is_dir():
+        return []
+
+    chunks: List[dict] = []
+    for fp in sorted(p.glob("*.chunks.json")):
+        try:
+            with fp.open("r", encoding="utf-8") as f:
+                data = json.load(f)
+                if isinstance(data, list):
+                    chunks.extend(data)
+        except Exception:
+            # skip files we cannot read or parse
+            continue
+
+    return chunks

@@ -48,3 +48,11 @@ class HealthCheckResponse(BaseModel):
     status: str = Field(..., description="Service status")
     service: str = Field(..., description="Service name")
     version: str = Field(..., description="Service version")
+
+
+class ChunkInfo(BaseModel):
+    """Information about a processed text chunk."""
+    chunk_id: str = Field(..., description="Unique chunk identifier")
+    document_name: str = Field(..., description="Source document name")
+    index: int = Field(..., description="Chunk index within the document")
+    text: str = Field(..., description="The chunk text")

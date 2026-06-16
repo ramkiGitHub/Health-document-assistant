@@ -2,6 +2,7 @@
 Healthcare Document Assistant - Main FastAPI Application
 """
 from typing import List
+from pathlib import Path
 
 from fastapi import FastAPI
 
@@ -13,7 +14,8 @@ from .schemas import (
     QuestionRequest,
     QuestionResponse,
 )
-from .services.document_service import ingest_documents, list_documents
+from .services.document_service import ingest_documents, list_documents, list_processed_chunks
+from .schemas import ChunkInfo
 from .services.qa_service import generate_mock_answer
 
 app = FastAPI(
@@ -47,6 +49,14 @@ async def root():
 async def documents():
     """List available synthetic healthcare documents."""
     return list_documents(config.DATA_PATH)
+
+
+@app.get("/documents/processed", response_model=List[ChunkInfo])
+async def documents_processed():
+    """Return processed chunks for explainability (reads `data/processed`)."""
+    processed_dir = Path("data/processed")
+    chunks = list_processed_chunks(str(processed_dir))
+    return chunks
 
 
 @app.post("/documents/ingest", response_model=IngestResponse)
